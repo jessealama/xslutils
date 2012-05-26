@@ -56,7 +56,7 @@ XSLTXT
 
 XSLT stylesheets are XML files.  But who wants to write these XML
 files?  I program my stylesheets in
-[http://www.zanthan.com/ajm/xsltxt/](XSLTXT) and then compile these to
+[XSLTXT](http://www.zanthan.com/ajm/xsltxt/) and then compile these to
 XSL.  If you like the idea of XSLT but loathe writing the bloated XML
 by hand, consider XSLTXT.
 
