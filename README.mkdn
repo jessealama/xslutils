@@ -1,6 +1,16 @@
 xslutils: Handy XLST 1.0 stylesheets
 ==========
 
+Getting started
+----------
+
+The .xsl files are ready to go.  There is a Makefile for converting
+the .xsltxt files to .xsl.  (I program my stylesheets in XSLTXT, not
+XSL.  See below.)  To compile them just do `make`.
+
+The stylesheets
+----------
+
 + *copy.xsl*: Defines an XSLT mode (called simply `copy`) that makes a
   deep copy of the current context node.  (At the moment, it does not
   handle text nodes.)
