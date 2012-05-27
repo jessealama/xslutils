@@ -18,6 +18,25 @@
     <xsl:value-of select="translate($s, $lcletters, $ucletters)"/>
   </xsl:template>
 
+  <xsl:template name="capitalize">
+    <xsl:param name="string"/>
+    <xsl:choose>
+      <xsl:when test="$string = &quot;&quot;">
+        <xsl:text/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="first" select="substring ($string, 1, 1)"/>
+        <xsl:variable name="first-uc">
+          <xsl:call-template name="uc">
+            <xsl:with-param name="s" select="$first"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:variable name="rest" select="substring-after ($string, $first)"/>
+        <xsl:value-of select="concat ($first-uc, $rest)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template name="capitalize-after-underscore">
     <xsl:param name="string"/>
     <xsl:choose>
