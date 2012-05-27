@@ -33,6 +33,8 @@ The stylesheets
 
 	* `uc`: Upppercase a string
 
+	* `capitalize`: Capitalize a string.
+
 	* `position-in-string`: At what position does a character (more
       generally, a string) first occur in a string?
 
