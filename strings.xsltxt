@@ -6,6 +6,17 @@ $ucletters = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; }
 tpl lc (#s) { `translate($s, $ucletters, $lcletters)`; }
 tpl uc (#s) { `translate($s, $lcletters, $ucletters)`; }
 
+tpl capitalize (#string) {
+  if [$string = ""] {
+    "";
+  } else {
+    $first = `substring ($string, 1, 1)`;
+    $first-uc = uc (#s = $first);
+    $rest = `substring-after ($string, $first)`;
+    `concat ($first-uc, $rest)`;
+  }
+}
+
 tpl capitalize-after-underscore (#string) {
   if [contains ($string, "_")] {
     $before = `substring-before ($string, "_")`;
