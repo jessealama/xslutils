@@ -19,6 +19,9 @@ The stylesheets
    (using the `msg` XSLT function), going down with a given message.  (See
    also *trace.xsl*.)
 
++ *list.xsl*: Apply a template to the nodes of a nodeset, separated by
+  a given delimiter.
+
 + *trace.xsl*: Prints out (using the `msg` XSLT function) a kind of
    XPath-y trace of where the current node is.  (See also *die.xsl*.)
 
