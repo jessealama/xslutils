@@ -10,6 +10,7 @@ tpl [*] (#message) mode="die" {
       $v = `string (.)`;
       msg `concat ($n, " = ", $v)`;
     }
+    msg terminate="yes" $message;
   } else {
     msg terminate="yes" `concat ($message, "\n", "(This element has no attributes.)")`;
   }

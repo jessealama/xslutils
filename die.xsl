@@ -18,6 +18,9 @@
             <xsl:value-of select="concat ($n, &quot; = &quot;, $v)"/>
           </xsl:message>
         </xsl:for-each>
+        <xsl:message terminate="yes">
+          <xsl:value-of select="$message"/>
+        </xsl:message>
       </xsl:when>
       <xsl:otherwise>
         <xsl:message terminate="yes">
