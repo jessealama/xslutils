@@ -11,7 +11,7 @@
         <xsl:message>
           <xsl:text>Attributes:</xsl:text>
         </xsl:message>
-        <xsl:for-each select="*@">
+        <xsl:for-each select="@*">
           <xsl:variable name="n" select="name (.)"/>
           <xsl:variable name="v" select="*[1]"/>
           <xsl:message>

@@ -5,7 +5,7 @@ tpl [*] (#message) mode="die" {
   apply [.] mode="trace";
   if [@*] {
     msg "Attributes:";
-    for-each [*@] {
+    for-each [@*] {
       $n = `name (.)`;
       $v = `*[1]`;
       msg `concat ($n, " = ", $v)`;
