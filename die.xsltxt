@@ -7,7 +7,7 @@ tpl [*] (#message) mode="die" {
     msg "Attributes:";
     for-each [@*] {
       $n = `name (.)`;
-      $v = `*[1]`;
+      $v = `string (.)`;
       msg `concat ($n, " = ", $v)`;
     }
   } else {

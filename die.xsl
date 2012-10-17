@@ -13,7 +13,7 @@
         </xsl:message>
         <xsl:for-each select="@*">
           <xsl:variable name="n" select="name (.)"/>
-          <xsl:variable name="v" select="*[1]"/>
+          <xsl:variable name="v" select="string (.)"/>
           <xsl:message>
             <xsl:value-of select="concat ($n, &quot; = &quot;, $v)"/>
           </xsl:message>
