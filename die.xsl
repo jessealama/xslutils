@@ -30,4 +30,11 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+  <xsl:template name="die">
+    <xsl:param name="message"/>
+    <xsl:apply-templates select="." mode="die">
+      <xsl:with-param name="message" select="$message"/>
+    </xsl:apply-templates>
+  </xsl:template>
 </xsl:stylesheet>

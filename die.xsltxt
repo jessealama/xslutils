@@ -15,3 +15,7 @@ tpl [*] (#message) mode="die" {
     msg terminate="yes" `concat ($message, "\n", "(This element has no attributes.)")`;
   }
 }
+
+tpl die (#message) {
+  apply [.] (#message = $message) mode="die";
+}
