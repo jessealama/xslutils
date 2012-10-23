@@ -8,3 +8,43 @@ tpl list (#separ, #elems) {
     }
   }
 }
+
+tpl list-with-marker-after-penultimate-element (#separ, #elems, #marker) {
+  $num-elems = `count ($elems)`;
+  choose {
+    when [$num-elems = 0] {
+      // nothing to do
+    }
+    when [$num-elems = 1] {
+      $elem = `$elems[1]`;
+      apply [$elem];
+    }
+    when [$num-elems = 2] {
+      $first-elem = `$elems[1]`;
+      $second-elem = `$elems[2]`;
+      apply [$first-elem]; copy-of $marker; apply [$second-elem];
+    }
+    otherwise {
+      for-each [$elems] {
+        $position = `position ()`;
+        $next-position = `$position + 1`;
+        $last = `last ()`;
+
+        apply [.];
+
+        choose {
+          when [$position = $last] {
+            // nothing special to do
+          }
+          when [$next-position = $last] {
+            copy-of $marker;
+          }
+          otherwise {
+            copy-of $separ;
+          }
+
+        }
+      }
+    }
+  }
+}
