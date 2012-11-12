@@ -4,7 +4,8 @@ stylesheets :=  \
   trace         \
   die           \
   copy          \
-  list
+  list          \
+  identity
 
 xsltxts = $(addsuffix .xsltxt,$(stylesheets))
 xsls = $(addsuffix .xsl,$(stylesheets))

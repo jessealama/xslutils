@@ -1,0 +1,10 @@
+stylesheet "1.0";
+output method="xml" indent="yes";
+
+tpl [*] {
+  $n = `name (.)`;
+  <$n {
+    for-each [@*] { copy-of `.`; }
+    apply [*];
+  }
+}
