@@ -1,0 +1,39 @@
+stylesheet "1.0";
+output method="html" indent="no";
+
+// By default, just copy
+tpl [*] {
+  $n = `name (.)`;
+  <$n {
+    for-each [@*] { copy-of `.`; }
+    apply [child::node()];
+  }
+}
+
+tpl [/] {
+  if [html] {
+    apply [html];
+  } else {
+    $root = `name (.)`;
+    $error-message = `concat ("Error: this stylesheet is intended to be applied to (X)HTML documents.", "\n", "The root element name is:", "\n", "\n", "  ", $root, "\n", "\n", "but we expected the root element to be 'html'.")`;
+    msg terminate="yes" $error-message;
+  }
+}
+
+tpl [p] {
+  <p {
+    apply [child::node()] mode="normalize";
+  }
+}
+
+tpl [*] mode="normalize" {
+  $n = `name (.)`;
+  <$n {
+    for-each [@*] { copy-of `.`; }
+    apply [child::node()] mode="normalize";
+  }
+}
+
+tpl [text()] mode="normalize" {
+  `normalize-space ()`;
+}
