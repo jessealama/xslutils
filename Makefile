@@ -1,14 +1,6 @@
-stylesheets :=  \
-  strings       \
-  token-strings \
-  trace         \
-  die           \
-  copy          \
-  list          \
-  identity
-
-xsltxts = $(addsuffix .xsltxt,$(stylesheets))
+xsltxts = $(wildcard *.xsltxt);
 xsls = $(addsuffix .xsl,$(stylesheets))
+stylesheets :=  $(basename $(xsltxts))
 editable-files = $(xsltxts) $(xsls) Makefile .gitignore
 emacs-backups = $(addsuffix ~,$(editable-files))
 
