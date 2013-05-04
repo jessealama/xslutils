@@ -1,18 +1,10 @@
-xsltxts = $(wildcard *.xsltxt);
-xsls = $(addsuffix .xsl,$(stylesheets))
-stylesheets :=  $(basename $(xsltxts))
-editable-files = $(xsltxts) $(xsls) Makefile .gitignore
-emacs-backups = $(addsuffix ~,$(editable-files))
+JAVA = java
+XSLTXT = xsltxt.jar
 
-# functions
-xslize = java -jar xsltxt.jar toXSL $(1) $(2)
-xslize-or-kill = $(call xslize,$(1),$(2)) || (rm -f $(2); false)
+%.xsl: %.xsltxt
+	$(JAVA) -jar $(XSLTXT) toXSL $*.xsltxt $*.xsl || rm $*.xsl;
 
-%.xsl: %.xsltxt xsltxt.jar
-	$(call xslize-or-kill,$*.xsltxt,$*.xsl)
-
-all: $(xsls)
+all: strings.xsl token-strings.xsl trace.xsl die.xsl copy.xsl die.xsl list.xsl
 
 clean:
-	rm -f $(xsls)
-	rm -f $(emacs-backups)
+	rm -f *.xsl
