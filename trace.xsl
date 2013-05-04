@@ -12,7 +12,7 @@
       <xsl:when test="count ($attrs) &gt; 0">
         <xsl:variable name="attr" select="$attrs[1]"/>
         <xsl:variable name="attr-n" select="name ($attr)"/>
-        <xsl:variable name="attr-v" select="value ($attr)"/>
+        <xsl:variable name="attr-v" select="$attr"/>
         <xsl:choose>
           <xsl:when test="count ($attrs) &gt; 1">
             <xsl:variable name="rest">

@@ -8,7 +8,7 @@ tpl attributes-and-values (#attrs) {
   if [count ($attrs) > 0] {
     $attr = `$attrs[1]`;
     $attr-n = `name ($attr)`;
-    $attr-v = `value ($attr)`;
+    $attr-v = `$attr`;
     if [count ($attrs) > 1] {
       $rest = attributes-and-values (#attrs = `$attrs[position() > 1]`);
       `concat ($attr-n, " = ", $attr-v, " , ", $rest)`;
