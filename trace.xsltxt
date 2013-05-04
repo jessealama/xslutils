@@ -4,6 +4,22 @@ tpl [*] mode="trace" {
   apply [.] mode="trace-recursive";
 }
 
+tpl attributes-and-values (#attrs) {
+  if [count ($attrs) > 0] {
+    $attr = `$attrs[1]`;
+    $attr-n = `name ($attr)`;
+    $attr-v = `value ($attr)`;
+    if [count ($attrs) > 1] {
+      $rest = attributes-and-values (#attrs = `$attrs[position() > 1]`);
+      `concat ($attr-n, " = ", $attr-v, " , ", $rest)`;
+    } else {
+      `concat ($attr-n, " = ", $attr-v)`;
+    }
+  } else {
+     "";
+  }
+}
+
 tpl [*] mode="trace-recursive" {
   $n = `name (.)`;
   $position = `count (preceding-sibling::*[name() = $n]) + 1`;
@@ -11,5 +27,10 @@ tpl [*] mode="trace-recursive" {
     apply [..] mode="trace-recursive";
   }
   $message = `concat ($n, "[", $position, "]")`;
-  msg $message;
+  if [count (@*) > 0] {
+    $attr-string = attributes-and-values (#attrs = `@*`);
+    msg `concat ($message, " (", $attr-string, ")")`;
+  } else {
+    msg $message;
+  }
 }
