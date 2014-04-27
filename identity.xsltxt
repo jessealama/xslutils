@@ -6,16 +6,35 @@ output method="xml" indent="yes";
 //////////////////////////////////////////////////////////////////////
 
 #comments = { "1"; } // whether comments are to be preserved
+#normalize = { "1"; } // whether text is to be normalized
 
 //////////////////////////////////////////////////////////////////////
 // Templates
 //////////////////////////////////////////////////////////////////////
 
+tpl [/]
+{
+    for-each [*]
+    {
+        for-each [preceding-sibling::node()]
+        {
+            sort order="descending";
+            apply [.];
+        }
+        apply [.];
+        for-each [following-sibling::node()]
+        {
+            sort order="ascending";
+            apply [.];
+        }
+    }
+}
+
 tpl [*] {
   $n = `name (.)`;
   <$n {
     for-each [@*] { copy-of `.`; }
-    apply [*];
+    apply [node()];
   }
 }
 
@@ -25,4 +44,18 @@ tpl [comment()]
     {
         copy-of `.`;
     }
+}
+
+tpl [text()]
+{
+    $s = `.`;
+    if [$normalize = "1"]
+    {
+        `normalize-space ($s)`;
+    }
+    else
+    {
+        `$s`;
+    }
+
 }
