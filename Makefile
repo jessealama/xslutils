@@ -1,3 +1,5 @@
+.PHONY: all
+
 JAVA = java
 XSLTXT = xsltxt.jar
 
