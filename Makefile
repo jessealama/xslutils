@@ -1,6 +1,10 @@
 .PHONY: all clean
 
-all: $(addsuffix .xsl,$(basename $(wildcard *.xsltxt)))
+xsltxts = $(wildcard *.xsltxt)
+stylesheets = $(basename $(xsltxts))
+xsls = $(addsuffix .xsl,$(stylesheets))
+
+all: $(xsls)
 
 %.xsl: %.xsltxt
 	(java -jar xsltxt.jar toXSL $< $@) || (rm $@; false)
