@@ -3,6 +3,8 @@
 JAVA = java
 XSLTXT = xsltxt.jar
 
+all: $(addsuffix .xsl,$(basename $(wildcard *.xsltxt)))
+
 %.xsl: %.xsltxt
 	$(JAVA) -jar $(XSLTXT) toXSL $*.xsltxt $*.xsl || rm $*.xsl;
 
