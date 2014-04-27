@@ -3,7 +3,7 @@
 all: $(addsuffix .xsl,$(basename $(wildcard *.xsltxt)))
 
 %.xsl: %.xsltxt
-	java -jar xsltxt.jar toXSL $*.xsltxt $*.xsl || rm $*.xsl;
+	(java -jar xsltxt.jar toXSL $*.xsltxt $*.xsl) || (rm $*.xsl; false)
 
 clean:
 	find . -type f -name '*.xsl' -delete
